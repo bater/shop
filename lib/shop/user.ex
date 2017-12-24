@@ -30,10 +30,10 @@ defmodule Shop.User do
 
   defp put_pass_hash(changeset) do
     case changeset do
-      %Ecto.Chageset{valid?: true, changes: %{password: pass}} ->
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(pass))
       _ ->
-        chageset
+        changeset
     end
   end
 
