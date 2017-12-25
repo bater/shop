@@ -14,11 +14,23 @@ defmodule ShopWeb.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
+        |> ShopWeb.Auth.login(user)
         |> put_flash(:info, "#{user.username} created")
         |> redirect(to: page_path(conn, :index))
 
       {:error, changeset} ->
         render conn, "new.html", changeset: changeset
+    end
+  end
+
+  def authenticate(conn, _params) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must log in to access that page.")
+      |> redirect(to: page_path(conn, :index))
+      |> halt
     end
   end
 end

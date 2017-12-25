@@ -3,6 +3,8 @@ defmodule ShopWeb.Admin.ProductController do
 
   alias Shop.Goods
   alias Shop.Goods.Product
+  import ShopWeb.UserController, only: [authenticate: 2]
+  plug :authenticate
 
   def index(conn, _params) do
     products = Goods.list_products()

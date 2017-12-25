@@ -7,6 +7,7 @@ defmodule ShopWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ShopWeb.Auth, repo: Shop.Repo
   end
 
   pipeline :api do
@@ -15,8 +16,9 @@ defmodule ShopWeb.Router do
 
   scope "/", ShopWeb do
     pipe_through :browser # Use the default browser stack
-    resources "/users", UserController, only: [:new, :create]
     get "/", PageController, :index
+    resources "/users", UserController, only: [:new, :create]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   scope "/admin", ShopWeb.Admin, as: :admin do
