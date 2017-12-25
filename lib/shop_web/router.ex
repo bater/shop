@@ -15,7 +15,7 @@ defmodule ShopWeb.Router do
 
   scope "/", ShopWeb do
     pipe_through :browser # Use the default browser stack
-
+    resources "/users", UserController, only: [:new, :create]
     get "/", PageController, :index
   end
 
