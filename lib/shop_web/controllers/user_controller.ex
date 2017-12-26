@@ -24,7 +24,7 @@ defmodule ShopWeb.UserController do
   end
 
   def authenticate(conn, _params) do
-    if conn.assigns.current_user do
+    if conn.assigns.current_user && conn.assigns.current_user.admin do
       conn
     else
       conn
