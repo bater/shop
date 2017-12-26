@@ -9,6 +9,7 @@ defmodule Shop.User do
     field :encrypted_password, :string
     field :password, :string, virtual: true
     field :username, :string
+    field :admin, :boolean
 
     timestamps()
   end
