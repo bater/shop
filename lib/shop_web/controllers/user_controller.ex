@@ -1,7 +1,6 @@
 defmodule ShopWeb.UserController do
   use ShopWeb, :controller
-  alias Shop.User
-  alias Shop.Repo
+  alias Shop.{User, Repo}
 
   def new(conn, _params) do
     changeset = User.changeset(%User{}, _params)

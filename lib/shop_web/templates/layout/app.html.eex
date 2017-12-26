@@ -16,6 +16,10 @@
       <header class="header">
         <ol class="breadcrumb text-right">
           <%= if @current_user do %>
+            <%= if @current_user.admin do %>
+              <li><%= link "Users" , to: admin_user_path(@conn, :index) %></li>
+              <li><%= link "Products" , to:  admin_product_path(@conn, :index) %></li>
+            <% end %>
             <li><%= @current_user.username %></li>
             <li><%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %></li>
           <% else %>
