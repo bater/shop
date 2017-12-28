@@ -14,7 +14,12 @@
   <tbody>
 <%= for product <- @products do %>
     <tr>
-      <td><%= product.title %></td>
+      <td>
+        <%= product.title %>
+        <%= if product.photo.file_name != "" do %>
+          <img class="thumbnail" src="<%= Shop.PhotoUploader.url({product.photo, product}, :thumb) %>"/>
+        <% end %>
+      </td>
       <td><%= product.description %></td>
       <td><%= product.quantity %></td>
       <td><%= product.price %></td>
