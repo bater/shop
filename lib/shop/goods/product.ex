@@ -9,6 +9,7 @@ defmodule Shop.Goods.Product do
     field :price, :integer
     field :quantity, :integer
     field :title, :string
+    field :photo, :string, default: ""
 
     timestamps()
   end
