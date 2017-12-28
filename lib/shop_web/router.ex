@@ -24,7 +24,7 @@ defmodule ShopWeb.Router do
   scope "/admin", ShopWeb.Admin, as: :admin do
     pipe_through :browser
     resources "/products", ProductController
-    resources "/users", UserController
+    resources "/users", UserController, except: [:show, :new, :create]
   end
 
   # Other scopes may use custom stacks.
