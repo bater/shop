@@ -16,3 +16,4 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
   * [Phoenix起步走：建立一個購物網站--登入](https://ithelp.ithome.com.tw/articles/10193700)
   * [Phoenix起步走：建立一個購物網站--管理權限](https://ithelp.ithome.com.tw/articles/10194057)
   * [Phoenix起步走：建立一個購物網站--會員管理](https://ithelp.ithome.com.tw/articles/10194164)
+  * [Phoenix起步走：建立一個購物網站--上傳圖片](https://ithelp.ithome.com.tw/articles/10194366)
