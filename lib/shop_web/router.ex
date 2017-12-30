@@ -10,6 +10,10 @@ defmodule ShopWeb.Router do
     plug ShopWeb.Auth, repo: Shop.Repo
   end
 
+  pipeline :admin_layout do
+    plug :put_layout, {ShopWeb.LayoutView, :admin}
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -22,7 +26,7 @@ defmodule ShopWeb.Router do
   end
 
   scope "/admin", ShopWeb.Admin, as: :admin do
-    pipe_through :browser
+    pipe_through [:browser, :admin_layout]
     resources "/products", ProductController
     resources "/users", UserController, except: [:show, :new, :create]
   end
