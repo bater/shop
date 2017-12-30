@@ -12,35 +12,35 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Shop Admin</a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <%= link "Users" , to: admin_user_path(@conn, :index), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link "Products" , to:  admin_product_path(@conn, :index), class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <%= link "Log out", to: session_path(@conn, :delete, @conn.assigns.current_user), method: "delete", class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="container">
-      <header class="header">
-        <ol class="breadcrumb text-right">
-          <%= if @current_user do %>
-            <%= if @current_user.admin do %>
-              <li><%= link "Users" , to: admin_user_path(@conn, :index) %></li>
-              <li><%= link "Products" , to:  admin_product_path(@conn, :index) %></li>
-            <% end %>
-            <li><%= @current_user.username %></li>
-            <li><%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %></li>
-          <% else %>
-            <li><%= link "Register" , to: user_path(@conn, :new) %></li>
-            <li><%= link "Login" , to:  session_path(@conn, :new) %></li>
-          <% end %>
-        </ol>
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
