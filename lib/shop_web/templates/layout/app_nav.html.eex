@@ -24,6 +24,7 @@
             <%= link "Log out", to: session_path(@conn, :delete, @conn.assigns.current_user), method: "delete", class: "dropdown-item" %>
           </div>
         </li>
+        <li class="nav-item"><a href="#" class="nav-link">Cart (<%= cart_item_count(@conn) %>)</a></li>
       <% else %>
         <li class="nav-item"><%= link "Register" , to: user_path(@conn, :new), class: "nav-link" %></li>
         <li class="nav-item"><%= link "Login" , to:  session_path(@conn, :new), class: "nav-link" %></li>

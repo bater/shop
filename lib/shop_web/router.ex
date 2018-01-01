@@ -8,6 +8,7 @@ defmodule ShopWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug ShopWeb.Auth, repo: Shop.Repo
+    plug ShopWeb.CartPlug
   end
 
   pipeline :admin_layout do
