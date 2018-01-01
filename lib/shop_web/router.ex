@@ -23,6 +23,7 @@ defmodule ShopWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/products", ProductController, only: [:index, :show]
   end
 
   scope "/admin", ShopWeb.Admin, as: :admin do

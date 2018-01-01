@@ -1,0 +1,27 @@
+<h2>Listing Products</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for product <- @products do %>
+    <tr>
+      <td>
+        <%= link product.title, to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
+        <%= if product.photo.file_name != "" do %>
+          <img class="thumbnail" src="admin/<%= Shop.PhotoUploader.url({product.photo, product}, :thumb) %>"/>
+        <% end %>
+      </td>
+      <td><%= product.description %></td>
+      <td><%= product.quantity %></td>
+      <td><%= product.price %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
