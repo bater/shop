@@ -7,7 +7,7 @@ defmodule ShopWeb.SessionController do
   end
 
   def create(conn, %{"session" => %{"username" => user, "password" => pass}}) do
-    case ShopWeb.Auth.login_by_username_and_pass(conn, user, pass, repo: Repo) do
+    case ShopWeb.AuthPlug.login_by_username_and_pass(conn, user, pass, repo: Repo) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcone back!")
@@ -21,7 +21,7 @@ defmodule ShopWeb.SessionController do
 
   def delete(conn, _params) do
     conn
-    |> ShopWeb.Auth.logout
+    |> ShopWeb.AuthPlug.logout
     |> redirect(to: page_path(conn, :index))
   end
 

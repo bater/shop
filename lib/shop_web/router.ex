@@ -7,7 +7,7 @@ defmodule ShopWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug ShopWeb.Auth, repo: Shop.Repo
+    plug ShopWeb.AuthPlug, repo: Shop.Repo
     plug ShopWeb.CartPlug
   end
 
