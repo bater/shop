@@ -13,7 +13,7 @@ defmodule ShopWeb.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> ShopWeb.Auth.login(user)
+        |> ShopWeb.AuthPlug.login(user)
         |> put_flash(:info, "#{user.username} created")
         |> redirect(to: page_path(conn, :index))
 
