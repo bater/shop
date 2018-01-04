@@ -7,21 +7,27 @@
       <th>Description</th>
       <th>Quantity</th>
       <th>Price</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for product <- @products do %>
-    <tr>
-      <td>
-        <%= link product.title, to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
-        <%= if product.photo.file_name != "" do %>
-          <img class="thumbnail" src="admin/<%= Shop.PhotoUploader.url({product.photo, product}, :thumb) %>"/>
-        <% end %>
-      </td>
-      <td><%= product.description %></td>
-      <td><%= product.quantity %></td>
-      <td><%= product.price %></td>
-    </tr>
-<% end %>
+    <%= for product <- @products do %>
+      <tr>
+        <td>
+          <%= link product.title, to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
+          <%= if present?(product.photo) do %>
+            <img class="thumbnail" src="admin/<%= Shop.PhotoUploader.url({product.photo, product}, :thumb) %>"/>
+          <% else %>
+            <img class="thumbnail" src="http://placehold.it/100x100&text=No Pic"/>
+          <% end %>
+        </td>
+        <td><%= product.description %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.price %></td>
+        <td class="text-right">
+          <span><%= link "Add to Cart", to: product_add_to_cart_path(@conn, :add_to_cart, product.id), class: "btn btn-danger btn-xs" %></span>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

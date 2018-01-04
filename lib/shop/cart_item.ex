@@ -14,7 +14,7 @@ defmodule Shop.CartItem do
   @doc false
   def changeset(%CartItem{} = cart_item, attrs) do
     cart_item
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:cart_id, :product_id])
+    |> validate_required([:cart_id, :product_id])
   end
 end
